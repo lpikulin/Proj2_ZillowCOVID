@@ -156,6 +156,9 @@ function plotAndInfo(state) {
                 bgcolor: '#E2E2E2',
                 bordercolor: '#FFFFFF',
                 borderwidth: 1
+            },
+            font: {
+                family: 'Arial, sans-serif'
             }
         };
 
@@ -167,17 +170,16 @@ function plotAndInfo(state) {
             demoInfo.html("");
             // Get metadata for state info
             console.log(stateData);
-
+        
             var newStateData = {
-                "State": stateData.State,
-                "Total Population": stateData.TotalPopulation,
-                "Total COVID Cases": stateData.TotalCases,
-                "Total COVID Deaths": stateData.TotalDeaths,
-                "Property Value Percent Change (Aug 2019 to Aug 2020)": (stateData.Change*100).toFixed(2)+"%"
+                "State": stateData[0][0][0],
+                "Cumulative COVID cases (as of Aug 31)": stateData[0][1][1],
+                "Cumulative COVID deaths (as of Aug 31)": stateData[0][1][2],
+                "Property Value Percent Change (Jan to Aug 2020)": (stateData[0][0][1]*100).toFixed(2)+"%"
             }
 
             Object.entries(newStateData).forEach((info) => {
-                demoInfo.append("p").text(`${info[0].toUpperCase()}: ${info[1]}`);
+                demoInfo.append("p").text(`${info[0]}: ${info[1]}`);
             });
         })
     })
@@ -241,14 +243,16 @@ function plotLineGraph(state) {
                 title: "Month"
             },
             yaxis: {
-                title: "Avg property value"
+                title: "Avg property value",
+                pad: 30
             },
             yaxis2: {
                 title: 'Cumulative COVID cases/death',
                 titlefont: {color: 'rgb(148, 103, 189)'},
                 tickfont: {color: 'rgb(148, 103, 189)'},
                 overlaying: 'y',
-                side: 'right'
+                side: 'right',
+                pad: 30
             },
             title: `Avg property value, cumulative COVID cases/deaths in ${state} (Jan - Aug 2020)`,
             autosize: false,
@@ -276,6 +280,9 @@ function plotLineGraph(state) {
                 bgcolor: '#E2E2E2',
                 bordercolor: '#FFFFFF',
                 borderwidth: 1
+            },
+            font: {
+                family: 'Arial, sans-serif'
             }
         };
         Plotly.newPlot('line-state', data, layout);
@@ -437,6 +444,9 @@ function countyChanged(county) {
                     bgcolor: '#E2E2E2',
                     bordercolor: '#FFFFFF',
                     borderwidth: 1
+                },
+                font: {
+                    family: 'Arial, sans-serif'
                 }
             };
         Plotly.newPlot('line-state', data, layout);

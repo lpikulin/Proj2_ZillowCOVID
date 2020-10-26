@@ -42,19 +42,9 @@ strong {
   font-size: 15px;
 }
 
-/* .items
-{
-  font-size: 20px;
-}
-
-.items li { 
-transition: all 0.60s ease-in; */
-/* }
 
  
 /* The footer is positioned at the bottom of the page */
-
-
 .footer {
   position: absolute;
   right: 0;
@@ -77,6 +67,11 @@ transition: all 0.60s ease-in; */
 .navbar {
   padding: 5px;
   margin: 0;
+}
+
+.navbar-brand{
+  padding: 10px;
+  font-size: 13px;
 }
 
 
